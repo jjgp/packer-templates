@@ -1,0 +1,17 @@
+#cloud-config
+autoinstall:
+  # Reference: https://ubuntu.com/server/docs/install/autoinstall-reference
+  early-commands:
+    # Reference: https://github.com/rasa/bento/blob/ec324adf7ea08bcbece8367acdd8acc25e428b9a/packer_templates/ubuntu/http/user-data#L10
+    - systemctl stop ssh
+  identity:
+    hostname: ${hostname}
+    password: ${crypted_pass}
+    username: ${username}
+  keyboard:
+    layout: en
+    variant: us
+  locale: en_US.UTF-8
+  ssh:
+    install-server: true
+  version: 1

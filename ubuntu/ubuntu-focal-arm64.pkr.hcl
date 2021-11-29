@@ -42,9 +42,9 @@ source "parallels-iso" "ubuntu-focal-arm64" {
     "/meta-data" = file("http/meta-data")
     # Reference: https://www.hashicorp.com/blog/using-template-files-with-hashicorp-packer
     "/user-data" = templatefile("http/user-data.pkrtpl", {
-      crypted_password = var.ssh_password_crypted
+      crypted_pass = var.ssh_password_crypted
+      hostname = source.name
       username = var.ssh_username
-      vm_name = "ubuntu-focal-arm64"
     })
   }
   iso_checksum           = "sha256:d6fea1f11b4d23b481a48198f51d9b08258a36f6024cb5cec447fe78379959ce"
@@ -56,7 +56,7 @@ source "parallels-iso" "ubuntu-focal-arm64" {
   ssh_password           = var.ssh_password
   ssh_username           = var.ssh_username
   ssh_timeout            = "10000s"
-  vm_name                = "ubuntu-focal-arm64"
+  vm_name                = source.name
 }
 
 build {
