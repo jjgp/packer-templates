@@ -17,8 +17,8 @@ source "parallels-iso" "ubuntu-focal-arm64" {
   iso_checksum           = "sha256:d6fea1f11b4d23b481a48198f51d9b08258a36f6024cb5cec447fe78379959ce"
   memory                 = 1024
   parallels_tools_flavor = "lin-arm"
-  ssh_username           = "vagrant"
-  ssh_password           = "vagrant"
+  ssh_username           = "packer"
+  ssh_password           = "packer"
   ssh_timeout            = "10000s"
   shutdown_command       = "echo 'packer' | sudo -S shutdown -P now"
   vm_name                = "ubuntu-focal-arm64"

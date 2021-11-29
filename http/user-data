@@ -2,10 +2,10 @@
 autoinstall:
   version: 1
   identity:
-    hostname: vagrant
-    username: vagrant
-    # Generated via: printf vagrant | mkpasswd -m sha-512 -S vagrant. -s
-    password: "$6$vagrant.$sd6r0/OKL.FIGZbhanVkrLassSxoPRv1h5lkISsmBONqaLUGVXkEcD22Ddak5W8JSxeU0VFkU/We1Y7o4hVO/1"
+    hostname: packer
+    username: packer
+    # Generated via: printf packer | mkpasswd -m sha-512 -S hashicorp. -s
+    password: "$6$hashicorp.$Wp1yBotkpPDzeT24N/1zmPsPHOtjk3lsefRnU/Ro0ekdIPEel/9SSUZ.hQlBRST.hkUhqOKIIGsoQBmVPiF3N0"
   early-commands:
     # otherwise packer tries to connect and exceed max attempts:
     - systemctl stop ssh
