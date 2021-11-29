@@ -1,5 +1,6 @@
 ## Notes
 
+- [Automated Server Installs Config File Reference](https://ubuntu.com/server/docs/install/autoinstall-reference#identity)
 - [Build Base Boxes with Packer](https://parallels.github.io/vagrant-parallels/docs/boxes/packer.html)
 - [Example Preseed](https://help.ubuntu.com/20.04/installation-guide/example-preseed.txt)
 - [github/chef/bentu/packer_templates/ubuntu](https://github.com/chef/bento/tree/main/packer_templates/ubuntu)
