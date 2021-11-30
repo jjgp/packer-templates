@@ -1,7 +1,9 @@
 # Packer Templates
 
 ## Building Kubeflow
+
 ## Building Ubuntu
+
 ### Focal ARM64
 
 ```bash
@@ -13,14 +15,24 @@ packer build ubuntu/focal-arm64.pkr.hcl \
     -var ssh_username=packer
 ```
 
+## Examples of building with Packer
+
+### Virtual Machines
+
+- [Build Base Boxes with Packer](https://parallels.github.io/vagrant-parallels/docs/boxes/packer.html)
+- [github/chef/bentu](https://github.com/chef/bento)
+- [github/tylert/packer-build](https://github.com/tylert/packer-build)
+
 ## Notes
 
-- [Automated Server Installs Config File Reference](https://ubuntu.com/server/docs/install/autoinstall-reference#identity)
-- [Build Base Boxes with Packer](https://parallels.github.io/vagrant-parallels/docs/boxes/packer.html)
-- [Example Preseed](https://help.ubuntu.com/20.04/installation-guide/example-preseed.txt)
-- [github/chef/bentu/packer_templates/ubuntu](https://github.com/chef/bento/tree/main/packer_templates/ubuntu)
-- [github/tylert/packer-build/source/ubuntu](https://github.com/tylert/packer-build/tree/master/source/ubuntu)
-- [How-To: Make Ubuntu Autoinstall ISO with Cloud-init](https://www.pugetsystems.com/labs/hpc/How-To-Make-Ubuntu-Autoinstall-ISO-with-Cloud-init-2213/)
 - [Install Kubeflow](https://www.kubeflow.org/docs/distributions/aws/deploy/install-kubeflow/)
 - [Parallels Builder (from an ISO)](https://www.packer.io/docs/builders/parallels/iso)
-- [Ubuntu Installation Guide](https://help.ubuntu.com/20.04/installation-guide/arm64/install.en.pdf)
+
+## TODO
+
+- Automate crypted password
+- Automate `packer fmt`
+- Makefile to ease the process
+- Maybe install `packer` and other executables local to this repo?
+- Consider using Ansible, Chef, or Puppet to actually configure the machines?
+- Rename this repo if it is extended beyond the use of Packer
