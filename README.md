@@ -1,3 +1,18 @@
+# Packer Templates
+
+## Building Kubeflow
+## Building Ubuntu
+### Focal ARM64
+
+```bash
+packer build ubuntu/focal-arm64.pkr.hcl \
+    -var cpus=2 \
+    -var memory=1024 \
+    -var ssh_password=packer \
+    -var ssh_password_crypted=$6$packer$boWUDPn2ItbIVp75vZkcB9enktYcH/yND03ZqeO.xN1ydPY2A8ZRsbTDbbiRlToGQ97O4.AM3Tdw9FQoPk41k. \
+    -var ssh_username=packer
+```
+
 ## Notes
 
 - [Automated Server Installs Config File Reference](https://ubuntu.com/server/docs/install/autoinstall-reference#identity)
