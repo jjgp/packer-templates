@@ -27,6 +27,7 @@ packer build ubuntu/focal-arm64.pkr.hcl \
 
 - [Install Kubeflow](https://www.kubeflow.org/docs/distributions/aws/deploy/install-kubeflow/)
 - [Parallels Builder (from an ISO)](https://www.packer.io/docs/builders/parallels/iso)
+- [Using Packer and Vagrant to Build Virtual Machines](https://www.cloudbees.com/blog/packer-vagrant-tutorial)
 
 ## TODO
 
