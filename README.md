@@ -45,7 +45,7 @@ vagrant up
 
 - Automate crypted password
 - Automate `packer fmt`
-- Makefile to ease the process
+- Makefile or CLI to ease the process
 - Maybe install `packer` and other executables local to this repo?
 - Consider using Ansible, Chef, or Puppet to actually configure the machines?
 - Rename this repo if it is extended beyond the use of Packer
