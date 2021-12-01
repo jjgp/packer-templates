@@ -12,31 +12,40 @@ variable "memory" {
   type    = number
 }
 
-variable "ssh_password" {
-  default   = "packer"
+variable "password" {
+  default   = "vagrant"
   sensitive = true
   type      = string
 }
 
-variable "ssh_password_crypted" {
-  # Generated via: printf packer | openssl passwd -6 -salt packer -stdin
-  default   = "$6$packer$boWUDPn2ItbIVp75vZkcB9enktYcH/yND03ZqeO.xN1ydPY2A8ZRsbTDbbiRlToGQ97O4.AM3Tdw9FQoPk41k."
+variable "password_crypted" {
+  # Generated via: printf vagrant | openssl passwd -6 -salt vagrant -stdin
+  default   = "$6$vagrant$aYdZwu4306HGdE39rROOrbSnB8G1Jser5zc9VMESSr8PouIZdgoO.OYQsFTOHXRXSYzB1oCD7571llAG6WR15."
   sensitive = true
   type      = string
 }
 
-variable "ssh_username" {
-  default = "packer"
+variable "username" {
+  default = "vagrant"
   type    = string
 }
 
-source "parallels-iso" "ubuntu-focal-arm64" {
+variable "vm_name" {
+  default = "ubuntu-focal-arm64"
+  type    = string
+}
+
+locals {
+  builds_directory = "${path.root}/../builds"
+}
+
+source "parallels-iso" "parallels" {
   boot_command = [
     "<esc>",
     "linux /casper/vmlinuz",
     " quiet",
     " autoinstall",
-    " ds='nocloud-net;s=http://{{ .HTTPIP }}:{{ .HTTPPort }}/'",
+    " ds='nocloud-net;s=http://{{.HTTPIP}}:{{.HTTPPort}}/'",
     "<enter>",
     "initrd /casper/initrd<enter>",
     "boot<enter>"
@@ -48,25 +57,30 @@ source "parallels-iso" "ubuntu-focal-arm64" {
     "/meta-data" = file("http/meta-data")
     # Reference: https://www.hashicorp.com/blog/using-template-files-with-hashicorp-packer
     "/user-data" = templatefile("http/user-data.pkrtpl", {
-      crypted_pass = var.ssh_password_crypted
-      hostname     = source.name
-      username     = var.ssh_username
+      password_crypted = var.password_crypted
+      hostname         = var.vm_name
+      username         = var.username
     })
   }
   iso_checksum           = "sha256:d6fea1f11b4d23b481a48198f51d9b08258a36f6024cb5cec447fe78379959ce"
   iso_url                = "https://cdimage.ubuntu.com/releases/20.04/release/ubuntu-20.04.3-live-server-arm64.iso"
   memory                 = var.memory
-  output_directory       = "${path.root}/../builds/${source.name}"
+  output_directory       = "${local.builds_directory}/pvm/${var.vm_name}"
   parallels_tools_flavor = "lin-arm"
-  shutdown_command       = "echo 'packer' | sudo -S shutdown -P now"
-  ssh_password           = var.ssh_password
-  ssh_username           = var.ssh_username
+  shutdown_command       = "echo ${var.password} | sudo -S shutdown -P now"
+  ssh_password           = var.password
   ssh_timeout            = "10000s"
-  vm_name                = source.name
+  ssh_username           = var.username
+  vm_name                = var.vm_name
 }
 
 build {
   sources = [
-    "sources.parallels-iso.ubuntu-focal-arm64"
+    "sources.parallels-iso.parallels"
   ]
+
+  post-processor "vagrant" {
+    keep_input_artifact = true
+    output              = "${local.builds_directory}/box/${var.vm_name}.box"
+  }
 }
