@@ -67,13 +67,14 @@ build {
     ]
     execute_command = "echo '${local.password}' | {{.Vars}} sudo -S -E sh -eux '{{.Path}}'"
     scripts = [
-      "${path.root}/scripts/parallels_tools.sh"
+      "${path.root}/scripts/parallels_tools.sh",
+      "${path.root}/scripts/vagrant_ssh.sh",
+      "${path.root}/scripts/vagrant_sudoers.sh"
     ]
   }
 
   post-processor "vagrant" {
     keep_input_artifact  = true
     output               = "${local.builds_directory}/box/${local.vm_name}.box"
-    vagrantfile_template = "${path.root}/templates/Vagrantfile.pkrtpl"
   }
 }
