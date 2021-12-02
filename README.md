@@ -2,20 +2,14 @@
 
 # Packer Templates
 
-## Building Kubeflow
-
-## Building Ubuntu
+## Ubuntu
 
 ### Focal ARM64
 
 ```bash
 packer build ubuntu/focal-arm64.pkr.hcl \
     -var cpus=2 \
-    -var memory=1024 \
-    -var password=vagrant \
-    -var password_crypted=$6$vagrant$aYdZwu4306HGdE39rROOrbSnB8G1Jser5zc9VMESSr8PouIZdgoO.OYQsFTOHXRXSYzB1oCD7571llAG6WR15. \
-    -var username=vagrant \
-    -var vm_name=ubuntu-focal-arm64
+    -var memory=1024
 ```
 
 ## Examples of building with Packer
