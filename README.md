@@ -39,17 +39,5 @@ vagrant up
 
 ## TODO
 
-- Follow advice in https://www.vagrantup.com/docs/boxes/base#default-user-settings
-  - Insecure keypair
-    - https://github.com/hashicorp/vagrant/tree/main/keys
-  - Root password
-  - Password-less Sudo
-  - SSH tweaks
-- https://github.com/chef/bento/blob/main/packer_templates/_common/parallels.sh
-- understand other scripts: https://github.com/chef/bento/blob/e5ea77b3ce8b63f461f9f39cbcd03fd8ed4f6334/packer_templates/ubuntu/ubuntu-20.04-arm64.json#L51
-- Automate crypted password
 - Automate `packer fmt`
 - Makefile or CLI to ease the process
-- Maybe install `packer` and other executables local to this repo?
-- Consider using Ansible, Chef, or Puppet to actually configure the machines?
-- Rename this repo if it is extended beyond the use of Packer
