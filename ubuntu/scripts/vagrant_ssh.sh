@@ -7,8 +7,8 @@ home_dir="${HOME_DIR:-/home/vagrant}"
 vagrant_pub_url="https://raw.githubusercontent.com/hashicorp/vagrant/main/keys/vagrant.pub"
 mkdir -p $home_dir/.ssh
 wget --no-check-certificate "${vagrant_pub_url}" -O $home_dir/.ssh/authorized_keys
-chmod 0700 $home_dir/.ssh
-chmod 0600 $home_dir/.ssh/authorized_keys
+chown -R vagrant $HOME_DIR/.ssh
+chmod -R go-rwsx $HOME_DIR/.ssh
 
 # Disable UseDNS to speed up SSH:
 # https://www.vagrantup.com/docs/boxes/base#ssh-tweaks
