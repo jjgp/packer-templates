@@ -17,7 +17,6 @@ locals {
   password         = "vagrant"
   # Generated via: printf vagrant | openssl passwd -6 -salt vagrant -stdin
   password_crypted    = "$6$vagrant$aYdZwu4306HGdE39rROOrbSnB8G1Jser5zc9VMESSr8PouIZdgoO.OYQsFTOHXRXSYzB1oCD7571llAG6WR15."
-  templates_directory = "${path.root}/../templates"
   username            = "vagrant"
   vm_name             = "ubuntu-focal-arm64"
 }
@@ -65,6 +64,6 @@ build {
   post-processor "vagrant" {
     keep_input_artifact  = true
     output               = "${local.builds_directory}/box/${local.vm_name}.box"
-    vagrantfile_template = "${local.templates_directory}/Vagrantfile.pkrtpl"
+    vagrantfile_template = "templates/Vagrantfile.pkrtpl"
   }
 }

@@ -43,6 +43,8 @@ vagrant up
 
 ## TODO
 
+- https://github.com/chef/bento/blob/main/packer_templates/_common/parallels.sh
+- understand other scripts: https://github.com/chef/bento/blob/e5ea77b3ce8b63f461f9f39cbcd03fd8ed4f6334/packer_templates/ubuntu/ubuntu-20.04-arm64.json#L51
 - Automate crypted password
 - Automate `packer fmt`
 - Makefile or CLI to ease the process
