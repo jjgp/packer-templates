@@ -16,9 +16,9 @@ locals {
   builds_directory = "${path.root}/../builds"
   password         = "vagrant"
   # Generated via: printf vagrant | openssl passwd -6 -salt vagrant -stdin
-  password_crypted    = "$6$vagrant$aYdZwu4306HGdE39rROOrbSnB8G1Jser5zc9VMESSr8PouIZdgoO.OYQsFTOHXRXSYzB1oCD7571llAG6WR15."
-  username            = "vagrant"
-  vm_name             = "ubuntu-focal-arm64"
+  password_crypted = "$6$vagrant$aYdZwu4306HGdE39rROOrbSnB8G1Jser5zc9VMESSr8PouIZdgoO.OYQsFTOHXRXSYzB1oCD7571llAG6WR15."
+  username         = "vagrant"
+  vm_name          = "ubuntu-focal-arm64"
 }
 
 source "parallels-iso" "parallels" {
@@ -61,9 +61,19 @@ build {
     "sources.parallels-iso.parallels"
   ]
 
+  provisioner "shell" {
+    environment_vars = [
+      "HOME_DIR=/home/vagrant"
+    ]
+    execute_command = "echo '${local.password}' | {{.Vars}} sudo -S -E sh -eux '{{.Path}}'"
+    scripts = [
+      "${path.root}/scripts/parallels_tools.sh"
+    ]
+  }
+
   post-processor "vagrant" {
     keep_input_artifact  = true
     output               = "${local.builds_directory}/box/${local.vm_name}.box"
-    vagrantfile_template = "templates/Vagrantfile.pkrtpl"
+    vagrantfile_template = "${path.root}/templates/Vagrantfile.pkrtpl"
   }
 }

@@ -8,10 +8,6 @@ autoinstall:
     hostname: ${hostname}
     password: ${password_crypted}
     username: ${username}
-  keyboard:
-    layout: en
-    variant: us
-  locale: en_US.UTF-8
   ssh:
     install-server: true
   version: 1
