@@ -1,6 +1,6 @@
-![Logo](https://user-images.githubusercontent.com/3421544/144397369-9ad948f5-e5a1-48e4-bd26-68e9ad59e99e.png)
-
 # Packer Templates
+
+![Logo](https://user-images.githubusercontent.com/3421544/144397369-9ad948f5-e5a1-48e4-bd26-68e9ad59e99e.png)
 
 ## Ubuntu
 
